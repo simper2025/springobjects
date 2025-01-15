@@ -4,45 +4,48 @@
 
 using namespace std;
 
-/// <summary>
-/// 
-/// </summary>
-/// <returns></returns>
+int AddsTwoNumber(int* a, int* b);
+
+void MemoryLeak() {
+	int* arr = nullptr;
+	const int size = 1000000;
+	for (int i = 0; i < size; i++) {
+		arr = new int[size];
+		*arr = i;
+		delete(arr);
+	}
+}
+
 int main() {
-
-	string header = "<html>\n<head>\n</head>\n<body>\n";
-	string footer = "</body></html>";
-
-	//Open up the file for writing
-	ofstream output;
-	output.open("person.html");
+	int num1 = 12;
+	int num2 = 31;
 
 
-	int num;
+	int* ptr = nullptr;
 
+	ptr = new int;
+	*ptr = 89;
 
-	cin >> num;
-	
-	//output << header << "<span>" << num << "</span>" << footer;
-	output << header << num << footer;
-	
-	output.close();
+	cout << "ptr: " << ptr << endl;
+	cout << "*ptr: " << *ptr << endl;
+	cout << "&ptr: " << &ptr << endl;
 
-	int b = AddsTwoNumber(12, 45);
+	delete(ptr);
 
-	return 0;
+	MemoryLeak();
+
+	//int num3 = AddsTwoNumber(&num1, &num2);
+	//cout << num3;
 }
 
-int AddsTwoNumber(int a, int b) {
-	return a + b;
+int AddsTwoNumber(int *a, int* b) {
+	cout << "a: " << a << endl;
+	cout << "*a: " << *a << endl;
+	cout << "&a: " << &a << endl;
+	return *a + *b;
 }
 
 
-/// <summary>
-/// Adds one to the parameter
-/// </summary>
-/// <param name="num1">some number</param>
-/// <returns>another number</returns>
 int foo(int num1) {
 	return num1 + 1;
 }
