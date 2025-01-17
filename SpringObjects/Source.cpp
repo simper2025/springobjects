@@ -12,7 +12,7 @@ void MemoryLeak() {
 	for (int i = 0; i < size; i++) {
 		arr = new int[size];
 		*arr = i;
-		//delete(arr);
+		delete(arr);
 	}
 }
 
@@ -22,35 +22,17 @@ void PrintBoard(int board[][8]) {
 
 int main() {
 
-	double num1 = 0.019;
-	bool num2 = (int)num1;
-
-	cout << num2 << endl;
-
-	int array[5];
 	int* arr2 = new int[5];
-
-	array[0] = 1;
-	arr2[0] = 2;
-
-
-	array[1] = 67;
-	*(array + 1) = 67;
-
-	arr2[1] = 45;
-	*(arr2 + 1) = 45;
-
-	int board[8][8];
-
-
-
-	cout << "array: " << array << endl;
-	cout << "*array: " << *array << endl;
-	cout << "&array: " << &array << endl;
-	cout << "&array[0]: " << &array[0] << endl;
+	arr2[0] = 22;
 
 	cout << "arr2: " << arr2 << endl;
 	cout << "*arr2: " << *arr2 << endl;
+	cout << "&arr2: " << &arr2 << endl;
+
+	delete(arr2);
+
+	cout << "arr2: " << arr2 << endl;
+	//cout << "*arr2: " << *arr2 << endl;
 	cout << "&arr2: " << &arr2 << endl;
 
 }
