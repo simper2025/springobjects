@@ -12,33 +12,50 @@ void MemoryLeak() {
 	for (int i = 0; i < size; i++) {
 		arr = new int[size];
 		*arr = i;
-		delete(arr);
+		//delete(arr);
 	}
 }
 
-int main() {
-	int num1 = 12;
-	int num2 = 31;
+void PrintBoard(int board[][8]) {
 
-
-	int* ptr = nullptr;
-
-	ptr = new int;
-	*ptr = 89;
-
-	cout << "ptr: " << ptr << endl;
-	cout << "*ptr: " << *ptr << endl;
-	cout << "&ptr: " << &ptr << endl;
-
-	delete(ptr);
-
-	MemoryLeak();
-
-	//int num3 = AddsTwoNumber(&num1, &num2);
-	//cout << num3;
 }
 
-int AddsTwoNumber(int *a, int* b) {
+int main() {
+
+	double num1 = 0.019;
+	bool num2 = (int)num1;
+
+	cout << num2 << endl;
+
+	int array[5];
+	int* arr2 = new int[5];
+
+	array[0] = 1;
+	arr2[0] = 2;
+
+
+	array[1] = 67;
+	*(array + 1) = 67;
+
+	arr2[1] = 45;
+	*(arr2 + 1) = 45;
+
+	int board[8][8];
+
+
+
+	cout << "array: " << array << endl;
+	cout << "*array: " << *array << endl;
+	cout << "&array: " << &array << endl;
+	cout << "&array[0]: " << &array[0] << endl;
+
+	cout << "arr2: " << arr2 << endl;
+	cout << "*arr2: " << *arr2 << endl;
+	cout << "&arr2: " << &arr2 << endl;
+
+}
+
+int AddsTwoNumber(int* a, int* b) {
 	cout << "a: " << a << endl;
 	cout << "*a: " << *a << endl;
 	cout << "&a: " << &a << endl;
