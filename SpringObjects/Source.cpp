@@ -44,7 +44,7 @@ int main() {
 	//p1->X
 
 	Point2d* p4 = new Point2d;
-	p4->X 
+	p4->X = 12;
 
 
 	int* arr2 = new int[5];
