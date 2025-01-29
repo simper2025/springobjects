@@ -19,44 +19,62 @@ private:
 	//int area;
 };
 
-class Unit {
+class Swordsman {
 public:
 	//Unit(){}
-	Unit(string n) {
+	Swordsman(string n) {
 		name = n;
 		health = 10;
 		damage = 2;
+		weapon = 0;
+		armor = 0;
 	}
-	string GetName() {
-		return name;
+	string GetName() { return name; }
+	void SetName(string n) { name = n; }
+	int GetHealth() const { return health; }
+	int GetBaseDamage() const { return damage; }
+	int GetDamage() const {
+		return damage + weapon;
 	}
-	int getHealth() {
-		return health;
-	}
-	int GetDamage() {
-		return damage;
-	}
-	void takeDamage(int d){
-		health = health - d;
-	}
+	int GetWeaponDamage() { return weapon; }
+	void SetWeapon(const int w) { weapon = w; }
+	void takeDamage(int d) {
+		if (armor >= d * 2)
+		{
+			//takes no damage on weak attack
 
+		}
+		else {
+			int tempdamage = armor < d ? d - armor : 1;
+
+			health = health - tempdamage;
+		}
+	}
+	int GetArmor() {
+		return armor;
+	}
+	void SetArmor(int a) {
+		armor = a;
+	}
 private:
 	string name;
 	int health;
 	int damage;
-
+	int weapon;
+	int armor;
 
 };
 
 int main() {
-	Unit u1("Bob");
-	Unit u2("Robert");
+	Swordsman bob("Bob");
+	Swordsman robert("Robert");
 
-	cout << u1.GetName() << " health: " << u1.getHealth() << endl;
+	cout << bob.GetName() << " health: " << bob.GetHealth() << endl;
+	bob.SetArmor(1);
 
-	u1.takeDamage(u2.GetDamage());
+	bob.takeDamage(robert.GetDamage());
 
-	cout << u1.GetName() << " health: " << u1.getHealth() << endl;
+	cout << bob.GetName() << " health: " << bob.GetHealth() << endl;
 
 	//cout << "arr2: " << arr2 << endl;
 	//cout << "*arr2: " << *arr2 << endl;
