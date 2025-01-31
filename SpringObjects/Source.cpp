@@ -29,6 +29,10 @@ public:
 		weapon = 0;
 		armor = 0;
 	}
+	Swordsman(string n, int a, int w) : Swordsman(n) {
+		weapon = w;
+		armor = a;
+	}
 	string GetName() { return name; }
 	void SetName(string n) { name = n; }
 	int GetHealth() const { return health; }
