@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -19,6 +20,7 @@ private:
 	//int area;
 };
 
+
 class Swordsman {
 public:
 	//Unit(){}
@@ -34,6 +36,9 @@ public:
 		armor = a;
 	}
 	string GetName() { return name; }
+	string GetStatus() {
+		return name + " has " + to_string(health) + " health ";
+	}
 	void SetName(string n) { name = n; }
 	int GetHealth() const { return health; }
 	int GetBaseDamage() const { return damage; }
@@ -42,7 +47,7 @@ public:
 	}
 	int GetWeaponDamage() { return weapon; }
 	void SetWeapon(const int w) { weapon = w; }
-	void takeDamage(int d) {
+	void TakeDamage(int d) {
 		if (armor >= d * 2)
 		{
 			//takes no damage on weak attack
@@ -54,12 +59,8 @@ public:
 			health = health - tempdamage;
 		}
 	}
-	int GetArmor() {
-		return armor;
-	}
-	void SetArmor(int a) {
-		armor = a;
-	}
+	int GetArmor() { return armor; }
+	void SetArmor(int a) { armor = a; }
 private:
 	string name;
 	int health;
@@ -69,16 +70,42 @@ private:
 
 };
 
+class Board {
+public:
+	Swordsman GetMan(string name) {
+		Swordsman s1("not found");
+		for (int i = 0; i < men.size(); i++)
+		{
+			if (men[i].GetName() == name) {
+				s1 = men[i];
+			}
+		}
+		return s1;
+	}
+	void AddSwordsman(Swordsman unit) {
+		men.push_back(unit);
+	}
+private:
+	int dimensions;
+	vector<Swordsman> men;
+};
+
 int main() {
 	Swordsman bob("Bob");
 	Swordsman robert("Robert");
+	Board board;
 
-	cout << bob.GetName() << " health: " << bob.GetHealth() << endl;
-	bob.SetArmor(1);
+	board.AddSwordsman(bob);
+	board.AddSwordsman(robert);
 
-	bob.takeDamage(robert.GetDamage());
 
-	cout << bob.GetName() << " health: " << bob.GetHealth() << endl;
+	cout << board.GetMan("Bob").GetStatus() << endl;
+	cout << board.GetMan("Robert").GetStatus() << endl;
+	board.GetMan("Bob").SetArmor(1);
+
+	board.GetMan("Bob").TakeDamage(board.GetMan("Robert").GetDamage());
+
+	cout << board.GetMan("Bob").GetStatus() << endl;
 
 	//cout << "arr2: " << arr2 << endl;
 	//cout << "*arr2: " << *arr2 << endl;
