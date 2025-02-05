@@ -26,22 +26,35 @@ private:
 class Board {
 public:
 	Swordsman GetMan(string name) {
-		Swordsman s1("not found");
-		for (int i = 0; i < men.size(); i++)
-		{
-			if (men[i].GetName() == name) {
-				s1 = men[i];
-			}
-		}
+		int index = GetUnitIndex(name);
+		Swordsman s1 = men[index];
 		return s1;
 	}
 	void AddSwordsman(Swordsman unit) {
 		men.push_back(unit);
 	}
+	void Attack(string attacker, string defender) {
+		Swordsman att = GetMan(attacker);
+		Swordsman def = GetMan(defender);
+		att.TakeDamage(def);
+	}
 private:
 	int dimensions;
 	vector<Swordsman> men;
+
+	int GetUnitIndex(string name) {
+		int retval = -1;
+		for (int i = 0; i < men.size(); i++)
+		{
+			if (men[i].GetName() == name) {
+				retval = i;
+				break;
+			}
+		}
+		return retval;
+	}
 };
+
 
 int Sum(int, int);
 
@@ -61,8 +74,7 @@ int main() {
 	cout << board.GetMan("Robert").GetStatus() << endl;
 	board.GetMan("Bob").SetArmor(1);
 
-	board.GetMan("Robert").TakeDamage(board.GetMan("Bob").GetDamage());
-	board.GetMan("Bob").TakeDamage(board.GetMan("Robert"));
+	board.Attack("Robert", "Bob");
 
 	cout << board.GetMan("Bob").GetStatus() << endl;
 	cout << board.GetMan("Robert").GetStatus() << endl;

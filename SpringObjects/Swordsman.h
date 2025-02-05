@@ -6,7 +6,6 @@ using namespace std;
 
 class Swordsman {
 public:
-	//Unit(){}
 	Swordsman(string n) {
 		name = n;
 		health = 10;
