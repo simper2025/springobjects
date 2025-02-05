@@ -19,29 +19,18 @@ public:
 		armor = a;
 	}
 	string GetName() { return name; }
-	string GetStatus() {
-		return name + " has " + to_string(health) + " health ";
-	}
+	string GetStatus();
+	
 	void SetName(string n) { name = n; }
 	int GetHealth() const { return health; }
 	int GetBaseDamage() const { return damage; }
-	int GetDamage() const {
-		return damage + weapon;
-	}
+	int GetDamage() const;
 	int GetWeaponDamage() { return weapon; }
 	void SetWeapon(const int w) { weapon = w; }
-	void TakeDamage(int d) {
-		if (armor >= d * 2)
-		{
-			//takes no damage on weak attack
-
-		}
-		else {
-			int tempdamage = armor < d ? d - armor : 1;
-
-			health = health - tempdamage;
-		}
-	}
+	
+	void TakeDamage(int d);
+	void TakeDamage(Swordsman attacker);
+	
 	int GetArmor() { return armor; }
 	void SetArmor(int a) { armor = a; }
 private:

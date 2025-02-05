@@ -61,9 +61,11 @@ int main() {
 	cout << board.GetMan("Robert").GetStatus() << endl;
 	board.GetMan("Bob").SetArmor(1);
 
-	board.GetMan("Bob").TakeDamage(board.GetMan("Robert").GetDamage());
+	board.GetMan("Robert").TakeDamage(board.GetMan("Bob").GetDamage());
+	board.GetMan("Bob").TakeDamage(board.GetMan("Robert"));
 
 	cout << board.GetMan("Bob").GetStatus() << endl;
+	cout << board.GetMan("Robert").GetStatus() << endl;
 
 	//cout << "arr2: " << arr2 << endl;
 	//cout << "*arr2: " << *arr2 << endl;
