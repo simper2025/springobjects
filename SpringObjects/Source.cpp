@@ -27,26 +27,26 @@ class Board {
 public:
 	Swordsman * GetMan(string name) {
 		int index = GetUnitIndex(name);
-		//Swordsman s1 = men[index];
-		return &men[index];
+		Swordsman * s1 = men[index];
+		return s1;
 	}
-	void AddSwordsman(Swordsman unit) {
+	void AddSwordsman(Swordsman *unit) {
 		men.push_back(unit);
 	}
 	void Attack(string attacker, string defender) {
 		int attackerIndex = GetUnitIndex(attacker);
 		int defenderIndex = GetUnitIndex(defender);
-		men[defenderIndex].TakeDamage(men[attackerIndex]);
+		men[defenderIndex]->TakeDamage(*men[attackerIndex]);
 	}
 private:
 	int dimensions;
-	vector<Swordsman> men;
+	vector<Swordsman*> men;
 
 	int GetUnitIndex(string name) {
 		int retval = -1;
 		for (int i = 0; i < men.size(); i++)
 		{
-			if (men[i].GetName() == name) {
+			if (men[i]->GetName() == name) {
 				retval = i;
 				break;
 			}
@@ -62,17 +62,21 @@ int main() {
 
 	int a = Sum(4, 5);
 
-	Swordsman bob("Bob");
-	Swordsman robert("Robert");
+	Swordsman * bob = new Swordsman("Bob");
+	Swordsman *robert = new Swordsman("Robert");
 	Board board;
 
 	board.AddSwordsman(bob);
 	board.AddSwordsman(robert);
 
+	Swordsman * p = board.GetMan("Bob");
+	cout << "\"" << p->GetName() << "\"\n";
+	cout << p->GetStatus() << endl;
 
 	cout << board.GetMan("Bob")->GetStatus() << endl;
 	cout << board.GetMan("Robert")->GetStatus() << endl;
 	board.GetMan("Bob")->SetArmor(1);
+	board.GetMan("Robert")->SetArmor(5);
 
 	board.Attack("Robert", "Bob");
 	board.Attack("Bob", "Robert");
