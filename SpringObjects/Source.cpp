@@ -34,9 +34,9 @@ public:
 		men.push_back(unit);
 	}
 	void Attack(string attacker, string defender) {
-		Swordsman att = GetMan(attacker);
-		Swordsman def = GetMan(defender);
-		att.TakeDamage(def);
+		int attackerIndex = GetUnitIndex(attacker);
+		int defenderIndex = GetUnitIndex(defender);
+		men[defenderIndex].TakeDamage(men[attackerIndex]);
 	}
 private:
 	int dimensions;
@@ -75,6 +75,7 @@ int main() {
 	board.GetMan("Bob").SetArmor(1);
 
 	board.Attack("Robert", "Bob");
+	board.Attack("Bob", "Robert");
 
 	cout << board.GetMan("Bob").GetStatus() << endl;
 	cout << board.GetMan("Robert").GetStatus() << endl;
