@@ -25,10 +25,10 @@ private:
 
 class Board {
 public:
-	Swordsman GetMan(string name) {
+	Swordsman * GetMan(string name) {
 		int index = GetUnitIndex(name);
-		Swordsman s1 = men[index];
-		return s1;
+		//Swordsman s1 = men[index];
+		return &men[index];
 	}
 	void AddSwordsman(Swordsman unit) {
 		men.push_back(unit);
@@ -70,15 +70,15 @@ int main() {
 	board.AddSwordsman(robert);
 
 
-	cout << board.GetMan("Bob").GetStatus() << endl;
-	cout << board.GetMan("Robert").GetStatus() << endl;
-	board.GetMan("Bob").SetArmor(1);
+	cout << board.GetMan("Bob")->GetStatus() << endl;
+	cout << board.GetMan("Robert")->GetStatus() << endl;
+	board.GetMan("Bob")->SetArmor(1);
 
 	board.Attack("Robert", "Bob");
 	board.Attack("Bob", "Robert");
 
-	cout << board.GetMan("Bob").GetStatus() << endl;
-	cout << board.GetMan("Robert").GetStatus() << endl;
+	cout << board.GetMan("Bob")->GetStatus() << endl;
+	cout << board.GetMan("Robert")->GetStatus() << endl;
 
 	//cout << "arr2: " << arr2 << endl;
 	//cout << "*arr2: " << *arr2 << endl;
