@@ -32,5 +32,8 @@
     <ClInclude Include="Archer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Coordinate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

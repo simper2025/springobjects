@@ -1,8 +1,12 @@
 #include "Swordsman.h"
 
+
+int Swordsman::nextId = 1;
+
 string Swordsman::GetStatus()
 {
-	return name + " has " + to_string(health) + " health ";
+	return //id + " " + 
+		name + "(Swordsman #" + to_string(id) + ") has " + to_string(health) + " health ";
 }
 
 int Swordsman::GetDamage() const
@@ -26,4 +30,10 @@ void  Swordsman::TakeDamage(int d) {
 void Swordsman::TakeDamage(Swordsman attacker) {
 	int damage = attacker.GetDamage();
 	TakeDamage(damage);
+}
+
+void Swordsman::SetArmor(int a) {
+	if (a >= 0 && a < 15) {
+		armor = a;
+	}
 }

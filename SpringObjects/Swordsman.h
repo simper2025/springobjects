@@ -2,18 +2,23 @@
 #include <string>
 #include <vector>
 
+#include <iostream>
+#include "Coordinate.h"
+
 using namespace std;
 
 class Swordsman {
 public:
-	Swordsman(string n) {
+	Swordsman(string n, Coordinate loc) {
+		id = nextId++;
 		name = n;
 		health = 10;
 		damage = 2;
 		weapon = 0;
 		armor = 0;
+		location = loc;
 	}
-	Swordsman(string n, int a, int w) : Swordsman(n) {
+	Swordsman(string n, Coordinate loc,  int a, int w) : Swordsman(n, loc) {
 		weapon = w;
 		armor = a;
 	}
@@ -31,14 +36,29 @@ public:
 	void TakeDamage(Swordsman attacker);
 	
 	int GetArmor() { return armor; }
-	void SetArmor(int a) { armor = a; }
+	void SetArmor(int a);
+
+	Coordinate GetLocation() {
+		return location;
+	}
+
+	static void PrintPerson(Swordsman s) {
+		std::cout << s.GetStatus();
+	}
 private:
+	static int nextId;
+
+	int id;
+	
 	string name;
 	int health;
 	int damage;
 	int weapon;
 	int armor;
 
+	Coordinate location;
+
 };
+
 
 
