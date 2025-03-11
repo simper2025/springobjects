@@ -30,7 +30,26 @@ private:
 
 
 class Board {
+private:
+	int dimensions;
+	vector<Swordsman*> men;
+
+	int GetUnitIndex(string name) {
+		int retval = -1;
+		for (int i = 0; i < men.size(); i++)
+		{
+			if (men[i]->GetName() == name) {
+				retval = i;
+				break;
+			}
+		}
+		return retval;
+	}
+
 public:
+	Board() {
+		dimensions = 10;
+	}
 	Swordsman* GetMan(string name) {
 		int index = GetUnitIndex(name);
 		Swordsman* s1 = men[index];
@@ -59,21 +78,6 @@ public:
 	}
 	int UnitCount() {
 		return men.size();
-	}
-private:
-	int dimensions;
-	vector<Swordsman*> men;
-
-	int GetUnitIndex(string name) {
-		int retval = -1;
-		for (int i = 0; i < men.size(); i++)
-		{
-			if (men[i]->GetName() == name) {
-				retval = i;
-				break;
-			}
-		}
-		return retval;
 	}
 };
 

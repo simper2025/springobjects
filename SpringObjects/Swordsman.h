@@ -4,13 +4,15 @@
 
 #include <iostream>
 #include "Coordinate.h"
+#include "Unit.h"
 
 using namespace std;
 
-class Swordsman {
+class Swordsman : public Unit  
+{
 public:
-	Swordsman(string n, Coordinate loc) {
-		id = nextId++;
+	Swordsman(string n, Coordinate loc) :Unit() {
+		id = 13;// nextId++;
 		name = n;
 		health = 10;
 		damage = 2;
@@ -45,18 +47,7 @@ public:
 	static void PrintPerson(Swordsman s) {
 		std::cout << s.GetStatus();
 	}
-private:
-	static int nextId;
 
-	int id;
-	
-	string name;
-	int health;
-	int damage;
-	int weapon;
-	int armor;
-
-	Coordinate location;
 
 };
 

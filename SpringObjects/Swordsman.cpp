@@ -1,12 +1,12 @@
 #include "Swordsman.h"
 
 
-int Swordsman::nextId = 1;
 
 string Swordsman::GetStatus()
 {
 	return //id + " " + 
-		name + "(Swordsman #" + to_string(id) + ") has " + to_string(health) + " health ";
+		name + 
+		"(Swordsman #" + to_string(id) + ") has " + to_string(health) + " health ";
 }
 
 int Swordsman::GetDamage() const
