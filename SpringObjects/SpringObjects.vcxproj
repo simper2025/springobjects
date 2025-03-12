@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Archer.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="SmallSource.cpp" />
     <ClCompile Include="Swordsman.cpp" />
     <ClCompile Include="Unit.cpp" />
   </ItemGroup>
