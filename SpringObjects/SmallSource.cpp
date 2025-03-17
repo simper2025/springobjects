@@ -1,5 +1,6 @@
 #include<iostream>
 #include <vector>
+#include <typeinfo>
 using namespace std;
 
 
@@ -24,10 +25,12 @@ public:
 		color = c;
 		//cout << "Bird(string)\n";
 	}
-	string Speak() {
-		return "tweat";
+	virtual string Speak() {
+		return "tweet";
 	}
 };
+
+class Rooster : public Bird{};
 
 class Duck :public Bird {
 
@@ -35,6 +38,7 @@ public:
 	Duck() :Bird() {
 		//cout << "Duck()\n";
 	}
+	//virtual string Speak() override {
 	string Speak() {
 		return "quack";
 	}
@@ -48,6 +52,7 @@ public:
 	FarmDuck() : FarmAnimal(), Duck() {
 		//cout << "FarmDuck()\n";
 	}
+	string Speak() { return "Hello"; }
 };
 
 int main() {
@@ -56,15 +61,21 @@ int main() {
 
 	//cout << "make b1\n";
 	Bird * b1 = new Bird("orange");
-	cout << "make d1\n";
+	//cout << "make d1\n";
 	Duck* d1 = new Duck();
+	FarmDuck* f1 = new FarmDuck();
+	Rooster* r1 = new Rooster();
 
 	flock.push_back(b1);
 	flock.push_back(d1);
+	flock.push_back(f1);
+	flock.push_back(r1);
 
 	for (int i = 0; i < flock.size(); i++)
 	{
+		cout << typeid(*flock[i]).name() << ": ";
 		cout << flock[i]->Speak() << endl;
+
 	}
 
 	//cout << "make f1\n";
