@@ -18,11 +18,11 @@ public:
 	Bird() {
 		color = "Brown";
 		height = 12;
-		cout << "Bird()\n";
+		//cout << "Bird()\n";
 	}
 	Bird(string c) :Bird() {
 		color = c;
-		cout << "Bird(string)\n";
+		//cout << "Bird(string)\n";
 	}
 	string Speak() {
 		return "tweat";
@@ -33,7 +33,7 @@ class Duck :public Bird {
 
 public:
 	Duck() :Bird() {
-		cout << "Duck()\n";
+		//cout << "Duck()\n";
 	}
 	string Speak() {
 		return "quack";
@@ -46,7 +46,7 @@ public:
 class FarmDuck :public FarmAnimal, public Duck {
 public:
 	FarmDuck() : FarmAnimal(), Duck() {
-		cout << "FarmDuck()\n";
+		//cout << "FarmDuck()\n";
 	}
 };
 
@@ -74,5 +74,14 @@ int main() {
 	cout << "d1 says: " << d1->Speak() << endl;
 	//cout << "f1 says: " << f1.Speak() << endl;
 	//f1.Swim();
+
+	for (int i = flock.size() - 1; i >=0 ; i--)
+	{
+		if (flock[i]) {
+			delete flock[i];
+		}
+		flock.pop_back();
+	}
+
 }
 
