@@ -99,8 +99,9 @@ int main() {
 
 	}
 
-	Duck* tDuck = (Duck*)r1;
-	tDuck->Swim();
+	// Breaks the code
+	//Duck* tDuck = (Duck*)r1;
+	//tDuck->Swim();
 
 	//cout << "make f1\n";
 	//FarmDuck f1;
