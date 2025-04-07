@@ -1,29 +1,21 @@
 ﻿#include <iostream>
+#include <vector>
 
-class Snek {
-private:
-	int length;
-public:
-	Snek(int l) {
-		length = l;
+using namespace std;
+
+int main() {
+
+	vector<int> vect = { 5,6,7,83,2,34 };
+
+	int i = 0;
+	for (int v : vect) {
+		cout << "value: " << v << ", " << i << endl;
+		i++;
 	}
-};
 
-class Game {
-private:
-	Snek snake;
-public:
-	Game(int sneklength) : snake(sneklength) {
-		//snake = Snek(5);
-	}
-};
+	vect.erase(vect.begin() + 1);
 
 
 
-int main()
-{
-	Game game(7);
-	int a;
-	std::cin >> a;
+	return 0;
 }
-
