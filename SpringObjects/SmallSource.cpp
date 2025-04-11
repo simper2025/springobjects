@@ -1,21 +1,41 @@
 ﻿#include <iostream>
 #include <vector>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
 int main() {
 
-	vector<int> vect = { 5,6,7,83,2,34 };
+	ifstream input;
 
-	int i = 0;
-	for (int v : vect) {
-		cout << "value: " << v << ", " << i << endl;
-		i++;
+	input.open("speech.txt");
+
+	if (!input) {
+		cout << "could not open that file\n";
+	}
+	cout << "I found the file!\n";
+
+	vector<string> information;
+	string line;
+
+	while (getline(input, line)) {
+	//while (input >> line) {
+		cout << line << "|";
+		information.push_back(line);
+	}
+	cout << endl;
+
+	input.close();
+
+	ofstream output;
+	output.open("WriteHere.txt", std::ios_base::app);
+
+	for (auto item : information) {
+		output << item << endl;
 	}
 
-	vect.erase(vect.begin() + 1);
-
-
+	output.close();
 
 	return 0;
 }

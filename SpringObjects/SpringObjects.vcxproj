@@ -138,6 +138,12 @@
     <ClInclude Include="Swordsman.h" />
     <ClInclude Include="Unit.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="speech.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="WriteHere.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
