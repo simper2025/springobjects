@@ -1,41 +1,22 @@
 ﻿#include <iostream>
 #include <vector>
-#include <fstream>
-#include <string>
+#include <algorithm>  // for std::sort
+#include <functional>
 
 using namespace std;
 
 int main() {
+    std::vector<int> numbers = { 5, 2, 9, 1, 5, 6 };
 
-	ifstream input;
+    // Sort in ascending order
+    std::sort(numbers.begin(), numbers.end(), greater<int>());
 
-	input.open("speech.txt");
+    // Output the sorted vector
+    std::cout << "Sorted vector: ";
+    for (int num : numbers) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
 
-	if (!input) {
-		cout << "could not open that file\n";
-	}
-	cout << "I found the file!\n";
-
-	vector<string> information;
-	string line;
-
-	while (getline(input, line)) {
-	//while (input >> line) {
-		cout << line << "|";
-		information.push_back(line);
-	}
-	cout << endl;
-
-	input.close();
-
-	ofstream output;
-	output.open("WriteHere.txt", std::ios_base::app);
-
-	for (auto item : information) {
-		output << item << endl;
-	}
-
-	output.close();
-
-	return 0;
+    return 0;
 }
