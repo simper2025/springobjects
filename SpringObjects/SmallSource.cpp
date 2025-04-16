@@ -8,8 +8,9 @@ using namespace std;
 int main() {
     std::vector<int> numbers = { 5, 2, 9, 1, 5, 6 };
 
-    // Sort in ascending order
-    std::sort(numbers.begin(), numbers.end(), greater<int>());
+    auto it = std::remove_if(numbers.begin(), numbers.end(),
+        [](int num) { return num %3 ==0; });
+    numbers.erase(it, numbers.end());
 
     // Output the sorted vector
     std::cout << "Sorted vector: ";
