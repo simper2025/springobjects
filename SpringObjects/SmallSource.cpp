@@ -5,6 +5,8 @@
 #include "Swordsman.h"
 #include "Coordinate.h"
 
+// Comment
+
 using namespace std;
 
 class Rectangle {
