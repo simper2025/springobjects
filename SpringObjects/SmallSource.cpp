@@ -128,18 +128,15 @@ int main() {
     std::for_each(rectangles.begin(), rectangles.end(), printRectangle);
 
 
-    std::vector<int> numbers = { 5, 2, 9, 1, 5, 6 };
+    std::vector<int> numbers; // = { 5, 2, 9, 1, 5, 6 };
 
-    auto it = std::remove_if(numbers.begin(), numbers.end(),
-        [](int num) { return num %3 ==0; });
-    numbers.erase(it, numbers.end());
+    std::for_each(numbers.begin(), numbers.end(), [](auto& item) {
+        item *= 14;
+        });
 
-    // Output the sorted vector
-    std::cout << "Sorted vector: ";
-    for (int num : numbers) {
-        std::cout << num << " ";
-    }
-    std::cout << std::endl;
+    std::for_each(numbers.begin(), numbers.end(), [](const auto& item) {
+        cout << item<< ", ";
+        });
 
     return 0;
 }
