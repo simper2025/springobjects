@@ -68,6 +68,11 @@ public:
     }
 };
 
+void printRectangle(Rectangle& r) {
+    cout << "Height: " << r.GetHeight() << ", Width: " << r.GetWidth()
+        << ", Area: " << r.CalculateArea() << endl;
+}
+
 int main() {
     
     auto i = 12;
@@ -101,15 +106,27 @@ int main() {
     Rectangle rect8(10, 10);
     rectangles.push_back(rect8);
 
+    auto it2 = std::find_if(rectangles.begin(), rectangles.end(), 
+        [](const auto& item) {
+        return item.GetWidth() == 25;  // Replace with your matching condition
+        }
+    );
+
+    if (it2 != rectangles.end()) {
+        Rectangle item = *it2;
+        std::cout << "Found item: " << item.GetWidth() << std::endl;
+    }
+    else {
+        std::cout << "Item not found." << std::endl;
+    }
+
 
     auto rect = std::remove_if(rectangles.begin(), rectangles.end(),
-        [](Rectangle r) { return r.GetHeight() != 10 || r.GetWidth() != 10; });
+        [](Rectangle r) { return r.GetHeight() != 10; });
     rectangles.erase(rect, rectangles.end());
 
-    for (auto r : rectangles) {
-        cout << "Height: " << r.GetHeight() << ", Width: " << r.GetWidth()
-            << ", Area: " << r.CalculateArea() << endl;
-    }
+    std::for_each(rectangles.begin(), rectangles.end(), printRectangle);
+
 
     std::vector<int> numbers = { 5, 2, 9, 1, 5, 6 };
 
