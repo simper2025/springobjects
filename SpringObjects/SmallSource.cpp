@@ -1,144 +1,51 @@
 ﻿#include <iostream>
-#include <vector>
-#include <algorithm>  // for std::sort
-#include <functional>
-#include "Swordsman.h"
-#include "Coordinate.h"
-
-// Comment
 
 using namespace std;
 
-class Rectangle {
+static class Math2 {
 private:
-    int width;
-    int height;
+    static int counter;
 
 public:
-    // Constructor to initialize the rectangle
-    Rectangle(int w, int h) : width(w), height(h) {}
-
-    // Getter for width
-    int GetWidth() const { return width; }
-
-    // Getter for height
-    int GetHeight() const { return height; }
-
-    // Setter for width
-    void SetWidth(int w) { width = w; }
-
-    // Setter for height
-    void SetHeight(int h) { height = h; }
-
-    // Method to calculate the area of the rectangle
-    double CalculateArea() const {
-        return static_cast<double>(width) * height;
+    static void SetCounter(int a) {
+        counter = a;
     }
 
-    // Method to calculate the perimeter of the rectangle
-    double CalculatePerimeter() const {
-        return 2 * (width + height);
-    }
-
-    // Method to draw the rectangle on a coordinate system
-    void Draw(int x, int y) const {
-        for (int i = 0; i < width; ++i) {
-            for (int j = 0; j < height; ++j) {
-                std::cout << '#';
-            }
-            std::cout << std::endl;
-        }
-
-        // Draw the top border
-        for (int i = 0; i < width + 2; ++i) {
-            std::cout << '#';
-        }
-        std::cout << std::endl;
-
-        // Draw the bottom border
-        for (int i = 0; i < width + 2; ++i) {
-            std::cout << '#';
-        }
-        std::cout << std::endl;
-
-        // Print coordinates of top-left and bottom-right corners
-        std::cout << "Top-left corner: (" << x << ", " << y + height << ")" << std::endl;
-        std::cout << "Bottom-right corner: (" << x + width << ", " << y << ")" << std::endl;
-
-        // Clear the console to draw a new rectangle
-        system("cls");
+    static int Increment() {
+        return ++counter;
     }
 };
 
-void printRectangle(Rectangle& r) {
-    cout << "Height: " << r.GetHeight() << ", Width: " << r.GetWidth()
-        << ", Area: " << r.CalculateArea() << endl;
-}
+// Define the static member outside the class
+int Math2::counter = 0;
 
 int main() {
-    
-    auto i = 12;
-    auto b = 3.14;
+    Math2::SetCounter(1);
+    Math2::Increment();
+    auto b = Math2::Increment();
 
-    //i = "hello";
-    
-    vector<Rectangle> rectangles;
+    std::cout << "b = " << b << std::endl;  
 
-    Rectangle rect1(10, 15);
-    rectangles.push_back(rect1);
-
-    Rectangle rect2(20, 30);
-    rectangles.push_back(rect2);
-
-    Rectangle rect3(5, 10);
-    rectangles.push_back(rect3);
-
-    Rectangle rect4(15, 25);
-    rectangles.push_back(rect4);
-
-    Rectangle rect5(8, 18);
-    rectangles.push_back(rect5);
-
-    Rectangle rect6(12, 22);
-    rectangles.push_back(rect6);
-
-    Rectangle rect7(25, 35);
-    rectangles.push_back(rect7);
-
-    Rectangle rect8(10, 10);
-    rectangles.push_back(rect8);
-
-    auto it2 = std::find_if(rectangles.begin(), rectangles.end(), 
-        [](const auto& item) {
-        return item.GetWidth() == 25;  // Replace with your matching condition
-        }
-    );
-
-    if (it2 != rectangles.end()) {
-        Rectangle item = *it2;
-        std::cout << "Found item: " << item.GetWidth() << std::endl;
-    }
-    else {
-        std::cout << "Item not found." << std::endl;
-    }
-
-
-    auto rect = std::remove_if(rectangles.begin(), rectangles.end(),
-        [](Rectangle r) { return r.GetHeight() != 10; });
-    rectangles.erase(rect, rectangles.end());
-
-    std::for_each(rectangles.begin(), rectangles.end(), printRectangle);
-
-
-    std::vector<int> numbers; // = { 5, 2, 9, 1, 5, 6 };
-
-    std::for_each(numbers.begin(), numbers.end(), [](auto& item) {
-        item *= 14;
-        });
-
-    std::for_each(numbers.begin(), numbers.end(), [](const auto& item) {
-        cout << item<< ", ";
-        });
+    int nextid = 3;
+    int id = (nextid++);
+    cout << "Id: " << id;
 
     return 0;
 }
+//
+//    string filename = "notfile12.txt";
+//    ofstream output;
+//
+//    output.open(filename);
+//
+//    //if (!output) {
+//    //    cout << "File doesn't exist. Creating...";
+//    //    output.open(filename, fstream::trunc);
+//    //}
+//
+//    output << filename << endl;
+//    output << "Informations\n";
+// 
+//    output.close();
+//    return 0;
+//}
